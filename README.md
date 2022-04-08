@@ -1,2 +1,2 @@
 # AdventOfCode
-Learning C with [Advent of Code](https://adventofcode.com/) 2021
+Learning C++ with [Advent of Code](https://adventofcode.com/) 2021
