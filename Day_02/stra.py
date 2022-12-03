@@ -44,6 +44,7 @@ print('The total score would be ' + str(score(data)))
 '''Part 2 of the puzzle'''
 # Read the data again
 data2 = pd.read_csv('input.txt', sep=' ', header=None)
+
 # Replace the values to match the strategy guide and the opponent's notation
 for i in range(len(data2)):
     # Draw rounds rules
@@ -65,8 +66,6 @@ for i in range(len(data2)):
             data2.iloc[i,1] = 'C'
         elif data2.iloc[i,0] == 'C':
             data2.iloc[i,1] = 'A'
-
-# Score the data
 
 # Score the data and write the output 
 
