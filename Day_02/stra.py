@@ -2,46 +2,49 @@
 
 import pandas as pd
 
+# Scoring function
+def score(df):
+    '''Score the game'''
+    rounds = pd.DataFrame(columns=['Result'])
+
+    for i in range(len(df)):
+    # Draw rounds rules
+       if df.iloc[i,0] == df.iloc[i,1]:
+           if df.iloc[i,1] == 'A':
+               rounds.loc[i] = 1 + 3
+           elif df.iloc[i,1] == 'B':
+               rounds.loc[i] = 2 + 3
+           elif df.iloc[i,1] == 'C':
+               rounds.loc[i] = 3 + 3
+       # Winning rounds rules
+       elif df.iloc[i,0] == 'A' and df.iloc[i,1] == 'B':
+           rounds.loc[i] = 2 + 6
+       elif df.iloc[i,0] == 'B' and df.iloc[i,1] == 'C':
+           rounds.loc[i] = 3 + 6
+       elif df.iloc[i,0] == 'C' and df.iloc[i,1] == 'A':
+           rounds.loc[i] = 1 + 6
+       # Losing rounds rules
+       elif df.iloc[i,0] == 'A' and df.iloc[i,1] == 'C':
+           rounds.loc[i] = 3
+       elif df.iloc[i,0] == 'B' and df.iloc[i,1] == 'A':
+           rounds.loc[i] = 1
+       elif df.iloc[i,0] == 'C' and df.iloc[i,1] == 'B':
+           rounds.loc[i] = 2
+    return int(rounds.sum())
+
 # Read the data
 data = pd.read_csv('input.txt', sep=' ', header=None)
-
+# Replace the values to match the opponent's notation
 data.iloc[:,1] = data.iloc[:,1].str.replace('X', 'A').str.replace('Y', 'B').str.replace('Z', 'C')
 
-# Score the data
+# Score the data and write the output 
 
-rounds = pd.DataFrame(columns=['Result'])
-
-for i in range(len(data)):
-    # Draw rounds rules
-    if data.iloc[i,0] == data.iloc[i,1]:
-        if data.iloc[i,1] == 'A':
-            rounds.loc[i] = 1 + 3
-        elif data.iloc[i,1] == 'B':
-            rounds.loc[i] = 2 + 3
-        elif data.iloc[i,1] == 'C':
-            rounds.loc[i] = 3 + 3
-    # Winning rounds rules
-    elif data.iloc[i,0] == 'A' and data.iloc[i,1] == 'B':
-        rounds.loc[i] = 2 + 6
-    elif data.iloc[i,0] == 'B' and data.iloc[i,1] == 'C':
-        rounds.loc[i] = 3 + 6
-    elif data.iloc[i,0] == 'C' and data.iloc[i,1] == 'A':
-        rounds.loc[i] = 1 + 6
-    # Losing rounds rules
-    elif data.iloc[i,0] == 'A' and data.iloc[i,1] == 'C':
-        rounds.loc[i] = 3
-    elif data.iloc[i,0] == 'B' and data.iloc[i,1] == 'A':
-        rounds.loc[i] = 1
-    elif data.iloc[i,0] == 'C' and data.iloc[i,1] == 'B':
-        rounds.loc[i] = 2
-
-# Write the output 
-print('The total score would be ' + str(int(rounds.sum())))
+print('The total score would be ' + str(score(data)))
 
 '''Part 2 of the puzzle'''
 # Read the data again
 data2 = pd.read_csv('input.txt', sep=' ', header=None)
-
+# Replace the values to match the strategy guide and the opponent's notation
 for i in range(len(data2)):
     # Draw rounds rules
     if data2.iloc[i,1] == 'Y':
@@ -65,31 +68,6 @@ for i in range(len(data2)):
 
 # Score the data
 
-rounds2 = pd.DataFrame(columns=['Result'])
+# Score the data and write the output 
 
-for i in range(len(data2)):
-    # Draw rounds rules
-    if data2.iloc[i,0] == data2.iloc[i,1]:
-        if data2.iloc[i,1] == 'A':
-            rounds2.loc[i] = 1 + 3
-        elif data2.iloc[i,1] == 'B':
-            rounds2.loc[i] = 2 + 3
-        elif data2.iloc[i,1] == 'C':
-            rounds2.loc[i] = 3 + 3
-    # Winning rounds rules
-    elif data2.iloc[i,0] == 'A' and data2.iloc[i,1] == 'B':
-        rounds2.loc[i] = 2 + 6
-    elif data2.iloc[i,0] == 'B' and data2.iloc[i,1] == 'C':
-        rounds2.loc[i] = 3 + 6
-    elif data2.iloc[i,0] == 'C' and data2.iloc[i,1] == 'A':
-        rounds2.loc[i] = 1 + 6
-    # Losing rounds rules
-    elif data2.iloc[i,0] == 'A' and data2.iloc[i,1] == 'C':
-        rounds2.loc[i] = 3
-    elif data2.iloc[i,0] == 'B' and data2.iloc[i,1] == 'A':
-        rounds2.loc[i] = 1
-    elif data2.iloc[i,0] == 'C' and data2.iloc[i,1] == 'B':
-        rounds2.loc[i] = 2
-
-# Write the output 
-print('The total score with strategy 2 would be ' + str(int(rounds2.sum())))        
+print('The total score with strategy 2 would be ' + str(score(data2)))
