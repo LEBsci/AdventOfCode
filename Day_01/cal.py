@@ -18,7 +18,40 @@ for i in range(len(indexes)-1): # iterate through the indexes
 
 print('The Elf carrying the most calories has: ' + str(int(result.max())) + ' calories\n') # print the maximum value in the result dataframe
 
-# Part 2 of the problem
+# Part 2 of the puzzle
 
 
 print('The top three elves are carrying a total of: '+ str(int(result.sort_values(by=['calories'], ascending=False).iloc[0:3].sum())) + ' calories') # print the sum of the top three values in the result dataframe
+
+'''elliotwutingfeng solutions'''
+
+# Open the file, read the lines and split them by newline characters
+with open("input.txt", "r") as f:
+    lines = f.read().split("\n")
+
+
+x = 0
+largest = 0
+for d in lines:
+    if d == "": # check each line for a separator or empty line and check if the current sum is larger than the largest sum
+        largest = max(x, largest)
+        x = 0
+    else: # sum the value of each line when there is no separator
+        x += int(d)
+print(largest)
+
+# Part 2 of the puzzle
+
+with open("input.txt", "r") as f:
+    lines = f.read().split("\n")
+
+numbers = [] # create a list to hold the numbers
+x = 0
+for d in lines:
+    if d == "": # check each line for a separator or empty line and save the sum to the list
+        numbers.append(x)
+        x = 0
+    else: # sum the value of each line when there is no separator
+        x += int(d) 
+top_3 = sum(sorted(numbers)[-3:]) # sort the list and sum the top 3 values
+print(top_3)
