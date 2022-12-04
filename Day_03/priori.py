@@ -18,7 +18,7 @@ for line in lines:
     output = [x for x in first if x in second]  # Find the characters that are in both halves
     sum += d[output[0]] # Add the priority of the first character (some appear several times) to the sum
 
-print('The sum of priorities for the item types that appear in both rucksacks is: ' + str(sum))
+print('The sum of priorities for the item types that appear in both rucksacks is: ' + str(sum) + '\n')
 
 
 '''Part two of the puzzle'''
