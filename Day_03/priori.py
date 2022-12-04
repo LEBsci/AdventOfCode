@@ -29,6 +29,5 @@ for i in range(len(lines)//3):
     first, second, third = lines[i*3:i*3+3] # Split the lines into groups of three
     output = [x for x in first if x in second and x in third] # Find the characters that are in all three lines
     sum2 += d[output[0]] # Add the priority of the first character (some appear several times) to the sum
-    print(output[0], d[output[0]], sum2)
 
 print('The sum of priorities for the item types that correspond to the badges of three-Elf groups is: ' + str(sum2))
