@@ -20,7 +20,6 @@ for line in lines:
 
 print('The sum of priorities for the item types that appear in both rucksacks is: ' + str(sum) + '\n')
 
-
 '''Part two of the puzzle'''
 
 sum2 = 0 # Sum of all priorities
